@@ -29,8 +29,8 @@ expert-cli chat --experts typescript
 - ✅ **Type Safety**: Understand and apply TypeScript type system
 - ✅ **Modern Patterns**: Knowledge of modern TypeScript features and best practices
 - ✅ **DoRA adapter (r=12)** optimized for code generation tasks
-- ✅ **318,627 validated examples** from multiple high-quality sources
-- ✅ **Comprehensive dataset** including GPT-3.5-turbo generated examples, TypeScript Handbook, and the-stack TypeScript subset
+- ✅ **207,283 validated examples** from official docs and open-source TypeScript code
+- ✅ **Growing dataset** combining TypeScript Handbook extractions and large curated slices of the-stack TypeScript subset
 
 ## What It Can Do ✅
 
@@ -90,20 +90,19 @@ with the store system...
 ## Dataset
 
 ### Current Dataset
-- **Total Examples**: 318,627 instruction-output pairs
+- **Total Examples**: 207,283 instruction-output pairs
 - **Sources**:
-  - [mhhmm/typescript-instruct-20k-v2c](https://huggingface.co/datasets/mhhmm/typescript-instruct-20k-v2c): 19,994 examples
-  - TypeScript Handbook (extracted): 155 examples
-  - [bigcode/the-stack](https://huggingface.co/datasets/bigcode/the-stack) TypeScript subset: 298,543 examples (batches 1 & 2)
+  - TypeScript Handbook extraction (`scripts/extract_typescript_docs.py`): 155 examples
+  - [bigcode/the-stack](https://huggingface.co/datasets/bigcode/the-stack) TypeScript subset (`scripts/integrate_the_stack.py --limit 100000`): 207,128 examples
 - **Format**: Instruction-tuning dataset for TypeScript code generation (ChatML format)
 - **Preprocessing**: Deduplication applied (50,026 duplicates removed)
 - **Location**: `datasets/train.jsonl`
-- **Integration Date**: 2025-01-07
+- **Integration Date**: 2025-11-08
 
 ### Dataset Statistics
-- **Expansion**: Successfully expanded from 20k to 318k+ examples (1,493% increase)
-- **Quality**: Mix of GPT-3.5-turbo generated examples, official documentation, and real-world code samples
-- **Coverage**: Comprehensive TypeScript patterns, modern features, and best practices
+- **Expansion**: Initial merge of documentation + curated The Stack subset (26k examples) expanded to ~207k examples
+- **Quality**: Blend of official documentation snippets and a broad sample of real-world code patterns
+- **Coverage**: Core TypeScript syntax plus significant representation of advanced language features and patterns
 
 ## Training
 
@@ -130,12 +129,11 @@ cd F:/Node/hivellm/expert/experts/expert-typescript
 
 ### Dataset Information
 
-The dataset has been successfully expanded and merged. Current dataset includes:
-- Base instruction-tuning examples (19,994)
+The dataset currently includes:
 - TypeScript Handbook documentation examples (155)
-- the-stack TypeScript code samples (298,543)
+- Curated the-stack TypeScript code samples (207,128)
 
-All datasets have been merged into `datasets/train.jsonl` with deduplication applied. The dataset is ready for training.
+All datasets have been merged into `datasets/train.jsonl` with deduplication applied. The dataset is ready for additional augmentation and training experiments.
 
 ## Testing
 
@@ -250,7 +248,7 @@ expert-cli package \
 | VRAM Overhead | ~18 MB |
 | Load Time | <10ms (hot) |
 | Training Time | ~8-12 hours (RTX 4090) |
-| Dataset Size | 318,627 examples |
+| Dataset Size | 207,283 examples |
 
 ## License
 
