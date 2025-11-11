@@ -27,7 +27,6 @@
           "alpha": 24,
           "scaling": "dora",
           "dropout": 0.05,
-          "path": "qwen3-06b/adapter/adapter_model.safetensors",
           "size_bytes": 0,
           "sha256": "",
           "_comment": "DoRA r=8-16 for TypeScript (r=12 balanced). Handles long-range code constraints better than LoRA."
@@ -63,6 +62,45 @@
     "task:code-explanation",
     "task:refactoring"
   ],
+  
+  "limitations": [
+    {
+      "pattern": "complex_type_inference",
+      "description": "May struggle with deeply nested generics and complex type inference",
+      "example": "Very complex type inference scenarios with multiple generic constraints",
+      "workaround": "Break down complex types into simpler interfaces or provide explicit type annotations"
+    },
+    {
+      "pattern": "advanced_decorators",
+      "description": "Limited support for complex decorator patterns",
+      "example": "Advanced decorator patterns with multiple decorators and metadata",
+      "workaround": "Use simpler decorator patterns or provide explicit decorator implementations"
+    },
+    {
+      "pattern": "framework_specific_code",
+      "description": "May not follow specific framework conventions perfectly",
+      "example": "Framework-specific patterns (React hooks, Vue composition API, Angular decorators)",
+      "workaround": "Provide framework-specific context in prompts or review generated code for framework conventions"
+    },
+    {
+      "pattern": "large_codebases",
+      "description": "Best for single functions/interfaces, not entire modules",
+      "example": "Generating entire modules or large codebases",
+      "workaround": "Generate code in smaller, focused chunks and compose them manually"
+    }
+  ],
+  
+  "quality_metrics": {
+    "benchmark_score": 0.0,
+    "base_model_score": 0.0,
+    "improvement_percent": 0.0,
+    "win_rate_vs_base": 0.0,
+    "test_queries": 0,
+    "checkpoint": "adapter",
+    "training_steps": 0,
+    "test_date": "2025-11-08",
+    "_comment": "Quality metrics pending - expert not yet fully evaluated. Dataset: 207,283 examples. Training configuration: DoRA r=12, 3 epochs."
+  },
 
   "perf": {
     "latency_ms_overhead": 2.8,
@@ -103,6 +141,11 @@
       "dataloader_pin_memory": true,
       "dataloader_prefetch_factor": 8,
       "dataloader_persistent_workers": true,
+      "save_strategy": "steps",
+      "save_steps": 1000,
+      "save_total_limit": 10,
+      "evaluation_strategy": "steps",
+      "eval_steps": 1000,
       "fp16": true,
       "bf16": false,
       "use_tf32": true,

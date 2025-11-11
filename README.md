@@ -137,7 +137,7 @@ All datasets have been merged into `datasets/train.jsonl` with deduplication app
 
 ## Testing
 
-Run the test suite to validate the expert:
+Run the automated tests to validate the expert:
 
 ```bash
 # Windows
@@ -146,6 +146,17 @@ Run the test suite to validate the expert:
 # Linux/macOS
 ./test.sh
 ```
+
+## Qualitative Checkpoint Review
+
+Generate side-by-side outputs for the base model and every available checkpoint:
+
+```powershell
+cd F:/Node/hivellm/expert/experts/expert-typescript
+F:/Node/hivellm/expert/cli/venv_windows/Scripts/python.exe compare.py
+```
+
+The script prints formatted outputs for each representative TypeScript task and saves a JSON summary as `checkpoint_comparison_results.json` for further analysis.
 
 ## Usage Examples
 

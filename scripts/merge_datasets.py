@@ -61,14 +61,16 @@ def deduplicate_examples(examples: List[Dict[str, Any]]) -> List[Dict[str, Any]]
 
 
 def validate_chatml_format(text: str) -> bool:
-    """Validate ChatML format."""
-    required_tags = ["<|system|>", "<|user|>", "<|assistant|>", "<|end|>"]
+    """Validate ChatML format (supports both legacy and Qwen3 formats)."""
+    # Check for Qwen3 format (<|im_start|>/<|im_end|>)
+    qwen3_tags = ["<|im_start|>system", "<|im_start|>user", "<|im_start|>assistant", "<|im_end|>"]
+    has_qwen3 = all(tag in text for tag in qwen3_tags)
     
-    for tag in required_tags:
-        if tag not in text:
-            return False
+    # Check for legacy format (<|system|>/<|end|>)
+    legacy_tags = ["<|system|>", "<|user|>", "<|assistant|>", "<|end|>"]
+    has_legacy = all(tag in text for tag in legacy_tags)
     
-    return True
+    return has_qwen3 or has_legacy
 
 
 def main():
