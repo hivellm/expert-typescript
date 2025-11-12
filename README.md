@@ -1,8 +1,15 @@
 # Expert TypeScript
 
-TypeScript code generation and instruction expert trained on multiple high-quality sources including synthetic datasets, official TypeScript documentation, and real-world code samples.
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/hivellm/expert-typescript/releases/tag/v0.0.1)
+[![License](https://img.shields.io/badge/license-CC--BY--4.0-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-development-yellow.svg)](README.md#quick-start)
 
-**Version:** 0.0.1 | **Base Model:** Qwen3-0.6B
+[![Base Model](https://img.shields.io/badge/base%20model-Qwen3--0.6B-orange.svg)](README.md#features)
+[![Adapter](https://img.shields.io/badge/adapter-DoRA%20r%3D12-blue.svg)](README.md#training--configuration)
+[![Dataset](https://img.shields.io/badge/dataset-207k%20examples-brightgreen.svg)](README.md#features)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20CUDA-0078d4.svg)](README.md#features)
+
+TypeScript code generation and instruction expert trained on multiple high-quality sources including synthetic datasets, official TypeScript documentation, and real-world code samples.
 
 ## Quick Start
 
